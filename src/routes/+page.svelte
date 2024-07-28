@@ -1,5 +1,10 @@
 <script>
     import Icon from '@iconify/svelte';
+    import { goto } from '$app/navigation';
+    
+    function sign_in() {
+        goto("Admin/Dashboard");
+    }
 
 </script>
 
@@ -37,7 +42,7 @@
                 
             </div>
             
-            <button>Continue</button>
+            <button on:click={sign_in}>Continue</button>
             
         </div>
         
@@ -48,7 +53,7 @@
     <footer>
 
             <a href=" ">Help</a>
-            <a href=" ">Terms of service nigga</a>
+            <a href=" ">Terms of service</a>
             <p> &copy; Cosmic Store</p>
         
     </footer>
