@@ -1,10 +1,19 @@
 <script>
     import Icon from '@iconify/svelte';
+    function activate_option(selected_nav_option) {
+        console.log("eeeee!!!!");
+
+
+
+        
+    }
+    
 
     let username = "DeadMoza";
 
 </script>        
-    
+
+
     <div class="top_panel">
         
         <div class="title">
@@ -16,24 +25,32 @@
         
         <p>Welcome, <b>{username}</b></p>
     </div>
-    
-    <div class="side_panel">
+    <div class="section">
+
+        <div class="side_panel">
+            
+            <nav class="navbar">
+                
+                <a href="Dashboard" on:click={activate_option}><span > <Icon icon="ic:round-home" style="vertical-align:middle;"/> </span> Dashboard</a>
+                <a href="Products" on:click={activate_option}><span> <Icon icon="material-symbols-light:box-edit" style="vertical-align:middle;"/> </span>Products</a>
+                <a href="Categories" on:click={activate_option}> <span> <Icon icon="ph:shapes-fill" style="vertical-align:middle;"/> </span>Categories</a>
+                <a href="Orders" on:click={activate_option}> <span> <Icon icon="icon-park-solid:view-list" style="vertical-align:middle;"/> </span>Orders</a>
+                <a href="Access" on:click={activate_option}> <span> <Icon icon="heroicons:user-group-20-solid" style="vertical-align:middle;"/> </span>Access</a>
+                <a href="Settings" on:click={activate_option}> <span> <Icon icon="fluent:settings-32-filled" style="vertical-align:middle;"/> </span>Settings</a>
+                
+            </nav>
+            
+        </div>
         
-        <nav class="navbar">
+        <div class="content">
             
-            <a href="Dashboard"><span > <Icon icon="mi:home" /> </span> Dashboard</a>
-            <a href="Products"><span> <Icon icon="material-symbols:box-edit-outline" /> </span>Products</a>
-            <a href="Categories"> <span> <Icon icon="ph:shapes-bold" /> </span>Categories</a>
-            <a href="Orders"> <span> <Icon icon="majesticons:list-box-line" /> </span>Orders</a>
-            <a href="Access"> <span> <Icon icon="heroicons:user-group" /> </span>Access</a>
-            <a href="Settings"> <span> <Icon icon="fluent:settings-48-regular" /> </span>Settings</a>
+            <slot/>
             
-        </nav>
+        </div>
         
     </div>
 
 
-<slot/>
 
 <style>
     
@@ -42,10 +59,15 @@
         margin: 0;
         box-sizing: border-box;
         font-family: Arial;
+        color: rgb(110, 110, 110);
+        background-color: rgb(245, 245, 245);
 
     }
 
     .top_panel {
+
+        z-index: 1;
+
         display: flex;
         flex-direction: row;
 
@@ -68,47 +90,68 @@
         height: 6em;
 
     }
+
+    .section {
+        display: flex;
+        min-height: 100vh;
+    }
     
     .side_panel {
+
+        z-index: 1;
         height: 100%;
         max-width: fit-content;
         
-        padding: 0 1em 0 2em;
+        margin: 0 1em 0 2em;
+        
     }
 
 
     .side_panel .navbar {
 
+        flex: 1;
         display: flex;
         flex-direction: column;
 
         
     }
-
-    .side_panel .navbar span {
-
-        font-size: 1.3em;
-    }
-
+    
 
     .side_panel .navbar a {
-        margin-bottom: 1em;
-        padding: 0.1em;
+        margin-bottom: 0.5em;
+        padding: 0.1em 2em 0.3em 0;
 
         text-decoration: none;
-        color: black;
 
         text-align: left;
+        
         font-size: 1.3em;
 
         border-radius: 5px;
 
     }
 
+
     .side_panel .navbar a:hover {
         background-color: hsl(208, 100%, 97%);
+        color: black;
     }
 
+
+    .side_panel .navbar a span {
+
+        font-size: 1.5em;
+        line-height: 1em;
+    }
+
+    .content {
+        flex: 3;
+        
+        background-color: white;
+        border-radius: 10px;
+
+        padding: 5px;
+    }
     
     
 </style>
