@@ -70,10 +70,6 @@
         font-family: Arial;
 
     }
-    
-    body {
-        margin: 0;
-    }
 
     .page {
         display: flex;
