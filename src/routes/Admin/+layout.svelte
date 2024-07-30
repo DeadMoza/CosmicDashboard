@@ -111,7 +111,7 @@
         margin: 0;
         box-sizing: border-box;
         font-family: Arial;
-        color: rgb(110, 110, 110);
+        color: hsl(0, 0%, 43%);
         background-color: rgb(245, 245, 245);
 
     }
@@ -217,14 +217,17 @@
 
         .side_panel {
             display: none;
+            margin-left: 0.5em;
+            margin-right: 0.2em;
         }
 
         .side_panel .navbar a{
-            font-size: 1em;
+            font-size: 0.8em;
+            padding-right: 1em;
         }
 
         .side_panel .navbar a span {
-            font-size: 1.8em;
+            font-size: 1.7em;
         }
     }
 
