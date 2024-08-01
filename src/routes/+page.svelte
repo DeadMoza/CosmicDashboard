@@ -1,6 +1,8 @@
 <script>
     import Icon from '@iconify/svelte';
     import { goto } from '$app/navigation';
+
+    
     
     function sign_in() {
         goto("Admin/Dashboard");

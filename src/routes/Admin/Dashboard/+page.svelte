@@ -94,7 +94,7 @@
 
             <h3>ALL TIME</h3>
             <h1>23000 LYD</h1>
-            <p>23000 made in total</p>
+            <p>23000 lyd made in total</p>
 
         </div>
 
@@ -116,6 +116,10 @@
 
     }
 
+    body {
+        padding: 1em;
+    }
+
     .info {
 
         display: flex;
@@ -126,12 +130,12 @@
     }
 
     .info .container {
-        border-radius: 7px;
+        border-radius: 5px;
         box-shadow: 0 0.1em 10px rgba(0, 0, 0, 0.2);
 
         max-width: 100%;
         width: 100%;
-        min-height: 8em;
+        min-height: 8.5em;
 
         margin: 1em 1.5em 0 1.5em;
 
@@ -146,6 +150,10 @@
         color: hsl(199, 77%, 74%);
         font-size: 3em;
 
+    }
+
+    h2 {
+        padding-left: 1em;
     }
 
     p {

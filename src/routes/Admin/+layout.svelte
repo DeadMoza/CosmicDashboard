@@ -84,9 +84,7 @@
                 <a href="Dashboard" class="nav_option" on:click={activate_option} style="color: black;"><span style="background-color: hsl(208, 100%, 97%); color: hsl(199, 77%, 74%)"> <Icon icon="ic:round-home" style="vertical-align:middle;"/> </span> Dashboard</a>
                 <a href="Products" class="nav_option" on:click={activate_option}><span> <Icon icon="material-symbols-light:box-edit" style="vertical-align:middle;"/> </span>Products</a>
                 <a href="Categories" class="nav_option" on:click= {activate_option}> <span> <Icon icon="ph:shapes-fill" style="vertical-align:middle;"/> </span>Categories</a>
-                <a href="Orders" class="nav_option" on:click={activate_option}> <span> <Icon icon="icon-park-solid:view-list" style="vertical-align:middle;"/> </span>Orders</a>
-                <a href="Access" class="nav_option" on:click={activate_option}> <span> <Icon icon="heroicons:user-group-20-solid" style="vertical-align:middle;"/> </span>Access</a>
-                <a href="Settings" class="nav_option" on:click={activate_option}> <span> <Icon icon="fluent:settings-32-filled" style="vertical-align:middle;"/> </span>Settings</a>
+                <a href="Orders" class="nav_option" on:click={activate_option}> <span> <Icon icon="icon-park-solid:view-list" style="vertical-align:middle;"/> </span>Orders</a>                <a href="Settings" class="nav_option" on:click={activate_option}> <span> <Icon icon="fluent:settings-32-filled" style="vertical-align:middle;"/> </span>Settings</a>
                 
             </nav>
             
@@ -127,7 +125,7 @@
         align-items: center;
         justify-content: space-between;
 
-        padding: 0 1em 1em 1em;
+        padding: 0 1.5em 1em 1em;
     }
 
     .menu_button {
