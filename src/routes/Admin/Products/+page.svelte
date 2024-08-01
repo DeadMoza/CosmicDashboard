@@ -1,6 +1,6 @@
 <script>
     import Icon from '@iconify/svelte';
-
+    import { goto } from "$app/navigation";
 
 </script>
 
@@ -8,7 +8,7 @@
 <main>
 <body>
     
-    <button class="add_new_product_bttn">Add new product</button>
+    <button class="add_new_product_bttn" on:click={() => goto("/Admin/Products/Add")}>Add new product</button>
 
     <div class="menu">
 
@@ -20,11 +20,11 @@
 
         <div class="list">
 
-            <span class="product"> <h4>Iphone 15 pro max</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Rei keychain</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Sticker</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Wall mount</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Shirt</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>Iphone 15 pro max</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>Rei keychain</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>Sticker</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>Wall mount</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>Shirt</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
 
         </div>
 

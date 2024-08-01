@@ -81,10 +81,11 @@
             
             <nav class="navbar">
                 
-                <a href="Dashboard" class="nav_option" on:click={activate_option} style="color: black;"><span style="background-color: hsl(208, 100%, 97%); color: hsl(199, 77%, 74%)"> <Icon icon="ic:round-home" style="vertical-align:middle;"/> </span> Dashboard</a>
-                <a href="Products" class="nav_option" on:click={activate_option}><span> <Icon icon="material-symbols-light:box-edit" style="vertical-align:middle;"/> </span>Products</a>
-                <a href="Categories" class="nav_option" on:click= {activate_option}> <span> <Icon icon="ph:shapes-fill" style="vertical-align:middle;"/> </span>Categories</a>
-                <a href="Orders" class="nav_option" on:click={activate_option}> <span> <Icon icon="icon-park-solid:view-list" style="vertical-align:middle;"/> </span>Orders</a>                <a href="Settings" class="nav_option" on:click={activate_option}> <span> <Icon icon="fluent:settings-32-filled" style="vertical-align:middle;"/> </span>Settings</a>
+                <a href="/Admin/Dashboard" class="nav_option" on:click={activate_option} style="color: black;"><span style="background-color: hsl(208, 100%, 97%); color: hsl(199, 77%, 74%)"> <Icon icon="ic:round-home" style="vertical-align:middle;"/> </span> Dashboard</a>
+                <a href="/Admin/Products" class="nav_option" on:click={activate_option}><span> <Icon icon="material-symbols-light:box-edit" style="vertical-align:middle;"/> </span>Products</a>
+                <a href="/Admin/Categories" class="nav_option" on:click= {activate_option}> <span> <Icon icon="ph:shapes-fill" style="vertical-align:middle;"/> </span>Categories</a>
+                <a href="/Admin/Orders" class="nav_option" on:click={activate_option}> <span> <Icon icon="icon-park-solid:view-list" style="vertical-align:middle;"/> </span>Orders</a>
+                <a href="/Admin/Settings" class="nav_option" on:click={activate_option}> <span> <Icon icon="fluent:settings-32-filled" style="vertical-align:middle;"/> </span>Settings</a>
                 
             </nav>
             

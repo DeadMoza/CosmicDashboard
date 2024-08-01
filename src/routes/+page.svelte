@@ -5,7 +5,7 @@
     
     
     function sign_in() {
-        goto("Admin/Dashboard");
+        goto("/Admin/Dashboard");
     }
 
 </script>
