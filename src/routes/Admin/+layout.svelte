@@ -2,21 +2,21 @@
     import Icon from '@iconify/svelte';
 
     // The sidebar's on/off switch indicator
-    let toggle_sidebar = false;
+    let show_top_navbar = true;
 
     //The sidebar's on/off switch
-    function toggle_sidenav_menu() {
-        const sidebar = document.getElementById("side_panel");
+    function toggle_top_navbar() {
+        const navbar = document.getElementById("top_navbar");
 
         // check if the switch indicator is false which means the sidepanel is closed
-        if(toggle_sidebar == false) {
-            sidebar.style.display = "block";
-            toggle_sidebar = !toggle_sidebar;
+        if(show_top_navbar == true) {
+            navbar.style.display = "none";
+            show_top_navbar = !show_top_navbar;
 
         }
         else {
-            sidebar.style.display = "none";
-            toggle_sidebar = !toggle_sidebar;
+            navbar.style.display = "block";
+            show_top_navbar = !show_top_navbar;
         }
     }
 
@@ -35,16 +35,19 @@
 
                 option.style.color = "black";
                 option.style.backgroundColor = "hsl(208, 100%, 97%)";
+                option.style.border = "solid transparent"
+                option.style.borderBottomColor = "hsl(199, 77%, 74%)";
 
                 icon.style.color = "hsl(199, 77%, 74%)";
                 icon.style.backgroundColor = "hsl(208, 100%, 97%)";
-        
+                
             }
             else {
                 const icon = option.firstChild;
 
                 option.style.color = "rgb(110, 110, 110)";
                 option.style.backgroundColor = "rgb(245, 245, 245)";
+                option.style.border = "solid transparent"
 
                 icon.style.color = "rgb(110, 110, 110)";
                 icon.style.backgroundColor = "rgb(245, 245, 245)";
@@ -66,14 +69,28 @@
         
         <div class="title">
 
-            <button class="menu_button" on:click={toggle_sidenav_menu}> <Icon icon="mingcute:menu-fill" /> </button>
+            <button class="menu_button" on:click={toggle_top_navbar}> <Icon icon="mingcute:menu-fill" /> </button>
         
             <img src="../../../cosmic_logo_admin.svg" alt="cosmic admin logo">
             <h2>CosmicAdmin</h2>
+
+            
+            
             
         </div>
         
         <p>Welcome, <b>{username}</b></p>
+
+        <div class="top_navbar" id="top_navbar">
+            <br>
+            <a href="/Admin/Dashboard" class="nav_option" on:click={activate_option} style="background-color: hsl(208, 100%, 97%); color: hsl(199, 77%, 74%); border: solid transparent; border-bottom-color: hsl(199, 77%, 74%)"> <Icon icon="ic:round-home" /> </a>
+            <a href="/Admin/Products" class="nav_option" on:click={activate_option}> <Icon icon="material-symbols-light:box-edit" /> </a>
+            <a href="/Admin/Categories" class="nav_option" on:click={activate_option}> <Icon icon="ph:shapes-fill" /> </a>
+            <a href="/Admin/Log" class="nav_option" on:click={activate_option}> <Icon icon="icon-park-solid:view-list" /> </a>
+            <a href="/Admin/Settings" class="nav_option" on:click={activate_option}> <Icon icon="fluent:settings-32-filled" /> </a>
+            
+        </div>
+
     </div>
     <div class="section">
 
@@ -205,30 +222,55 @@
         padding: 5px;
     }
 
-    @media only screen and (max-width: 600px) {
+    .top_navbar {
+        font-size: 2.2em;
+        margin-bottom: 0.1em;
+
+    }
+
+    .top_navbar a {
+        padding: 0 0.3em;
+        margin: 0 0.2em;
+
+        border: solid transparent;
+
+    }
+
+    @media only screen and (max-width: 768px) {
         .top_panel {
             flex-direction: column;
             font-size: 0.8em;
-        }
+
+            padding: 0 0.8em;
+        }   
+    
         .menu_button {
             display: block;
-        }
+
+        } 
 
         .side_panel {
             display: none;
-            margin-left: 0.5em;
-            margin-right: 0.2em;
+
+        }
+        
+        @media only screen and (min-width: 769px) {
+            .top_panel {
+                display: none;
+
+            }
+
+            .side_panel {
+                display: block;
+                
+            }
         }
 
-        .side_panel .navbar a{
-            font-size: 0.8em;
-            padding-right: 1em;
-        }
-
-        .side_panel .navbar a span {
-            font-size: 1.7em;
-        }
     }
+
+      
+
+        
 
     
     

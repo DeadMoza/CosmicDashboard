@@ -7,7 +7,8 @@
 <body>
     <div class="header">
 
-        <a href="/Admin/Products" class="back_bttn"> <Icon icon="material-symbols:arrow-back" /> </a> <h2>Add Product</h2>
+        <a href="/Admin/Products" class="back_bttn"> <Icon icon="material-symbols:arrow-back" /> </a>
+        <h2>Add Product</h2>
 
     </div>
 
@@ -91,8 +92,8 @@
     .header {
         display: flex;
         flex-direction: row;
-        
-        
+
+        margin-bottom: 1em;        
 
     }
 
@@ -177,6 +178,49 @@
     .add_photos span {
         color: black;
         font-size: 2em;
+    }
+
+    @media only screen and (max-width: 768px) {
+        body {
+            padding: 0;
+
+        }
+
+        .header h2{
+            font-size: 1.3em;
+
+        }
+
+        .header .back_bttn {
+            margin-right: 0.4em;
+            font-size: 1.5em;
+
+        }
+
+        .product_form {
+            margin: 0;
+
+        }
+
+        .product_form .form_container {
+            margin-bottom: 0.8em;
+
+        }
+
+        .product_form .form_container .container {
+            margin: 0 0.8em;
+
+        }
+
+        .product_form .product_describtion_container {
+            margin: 0 0.8em;
+
+        }
+
+        .add_photos {
+            margin: 0.8em 0.8em;
+
+        }
     }
 
 

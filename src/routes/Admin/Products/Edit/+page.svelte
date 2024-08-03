@@ -83,8 +83,8 @@
         display: flex;
         flex-direction: row;
         
+        margin-bottom: 1em;
         
-
     }
 
     .header .back_bttn {
@@ -147,6 +147,45 @@
     .product_form .product_describtion_container input {
         height: 5em;
         text-align: left;
+    }
+
+    @media only screen and (max-width: 768px) {
+        body {
+            padding: 0;
+
+        }
+
+        .header h2{
+            font-size: 1.3em;
+
+        }
+
+        .header .back_bttn {
+            margin-right: 0.4em;
+            font-size: 1.5em;
+
+        }
+
+        .product_form {
+            margin: 0;
+
+        }
+
+        .product_form .form_container {
+            margin-bottom: 0.8em;
+
+        }
+
+        .product_form .form_container .container {
+            margin: 0 0.8em;
+
+        }
+
+        .product_form .product_describtion_container {
+            margin: 0 0.8em;
+
+        }
+
     }
 
 

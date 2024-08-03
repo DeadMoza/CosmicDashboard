@@ -130,6 +130,28 @@
         background-color: rgba(255, 0, 0, 0.45);
         cursor: pointer;
     }
+
+    @media only screen and (max-width: 768px) {
+        .menu .list .category {
+            padding: 0.2em 0;
+        }
+
+        .menu .list .category h4 {
+            font-size: 1rem;
+            
+        }
+
+        .menu .list .category .edit_bttn {
+            padding: 0.1em 0.3em;
+
+        }
+
+        .menu .list .category .delete_bttn {
+            padding: 0.1em 0.4em;
+
+        }
+
+    }
     
 
 </style>

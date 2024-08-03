@@ -21,14 +21,14 @@
 
         <div class="orders_list">
 
-            <div class="order"> <h4 id="order_email">elshamia12@gmail.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Iphone 16 pro max</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">pooperface298@gmail.comzzzzzzzzzzzzzzzz</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Stickers</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">zengitwerk@outlook.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Hamburger</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">hello.firesip@com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">flipflops</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">brainfart342312@outlook.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Maglouuubaaaaa</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">smoocher9000@hotmail.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Rei keychain</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">clouraxe@gmail.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">playstation 7</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 id="order_email">poop@gmail.com</h4> <p id="order_date">31/08/2024</p> <h5 id="product">Xbox 720 pro ultra max series xfx</h5> <button id="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">elshamia12@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Iphone 16 pro max</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">pooperface298@gmail.comzzzzzzzzzzzzzzzz</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Stickers</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">zengitwerk@outlook.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Hamburger</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">hello.firesip@com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">flipflops</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">brainfart342312@outlook.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Maglouuubaaaaa</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">smoocher9000@hotmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Rei keychain</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">clouraxe@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">playstation 7</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
+            <div class="order"> <h4 class="order_email">poop@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Xbox 720 pro ultra max series xfx</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
 
         </div>
 
@@ -94,7 +94,7 @@
 
     }
 
-    .menu .orders_list .order #order_email {
+    .menu .orders_list .order .order_email {
         max-width: 15em;
         width: 100%;
 
@@ -102,13 +102,13 @@
         text-overflow: ellipsis;
     } 
 
-    .menu .orders_list .order #product {
+    .menu .orders_list .order .product {
 
         max-width: 50em;
         width: 100%;
     }
 
-    .menu .orders_list .order #more_details{
+    .menu .orders_list .order .more_details{
         border: none;
         border-radius: 5px;
         padding: 0.3em 0.6em;
@@ -117,6 +117,27 @@
         
         vertical-align: middle;
         line-height: 1em;
+
+    }
+
+    @media only screen and (max-width: 768px) {
+        .menu .orders_list .order {
+            min-height: 4em;
+
+            flex-direction: column;
+            text-align: center;
+
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+
+            border: solid transparent;
+            border-bottom-color: hsl(208, 100%, 97%);
+        
+        }
+
+        .menu .orders_list .order .order_email {
+            max-width: 374px;
+        }
     }
 
     

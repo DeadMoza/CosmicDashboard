@@ -153,12 +153,49 @@
 
     h2 {
         padding-left: 1em;
+
     }
 
     p {
-        color: hsl(0, 0%, 50%);;
+        color: hsl(0, 0%, 50%);
+
     }
 
+
+    @media only screen and (max-width: 768px) {
+        body {
+            padding: 0;
+        }
+
+        .info .container {
+            margin: 0.3em;
+            text-align: center;
+            justify-content: center;
+
+        }
+
+        h1 {
+            font-size: 2em;
+
+        }
+
+        h2 {
+            padding: 0;
+            font-size: 1.4em;
+
+        }
+
+        h3 {
+            font-size: 1em;
+
+        }
+
+        p {
+            display: none;
+
+        } 
+        
+    }
  
 
 </style>

@@ -25,6 +25,8 @@
             <span class="product"> <h4>Sticker</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
             <span class="product"> <h4>Wall mount</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
             <span class="product"> <h4>Shirt</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            <span class="product"> <h4>i put the new forhis on the jeep i travel to the bungo bangies el tangoobee</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+
 
         </div>
 
@@ -91,6 +93,14 @@
         font-size: 1.1em;
     }
 
+    .menu .list .product h4{
+        max-width: 280px;
+        max-height: 21px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 
     .menu .list .product .edit_bttn {
         border: none;
@@ -120,6 +130,28 @@
     .menu .list .product .delete_bttn:hover {
         background-color: rgba(255, 0, 0, 0.45);
         cursor: pointer;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .menu .list .product {
+            padding: 0.2em 0;
+        }
+
+        .menu .list .product h4 {
+            font-size: 1rem;
+            
+        }
+
+        .menu .list .product .edit_bttn {
+            padding: 0.1em 0.3em;
+
+        }
+
+        .menu .list .product .delete_bttn {
+            padding: 0.1em 0.4em;
+
+        }
+
     }
     
 
