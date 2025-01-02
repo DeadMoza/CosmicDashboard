@@ -1,15 +1,16 @@
 <script>
+    //#region code
     import Icon from '@iconify/svelte';
 
     // The sidebar's on/off switch indicator
-    let show_top_navbar = true;
+        let show_top_navbar = true;
 
     //The sidebar's on/off switch
     function toggle_top_navbar() {
         const navbar = document.getElementById("top_navbar");
 
         // check if the switch indicator is false which means the sidepanel is closed
-        if(show_top_navbar == true) {
+        if(show_top_navbar) {
             navbar.style.display = "none";
             show_top_navbar = !show_top_navbar;
 
@@ -59,7 +60,7 @@
     
 
     let username = "DeadMoza";
-
+//#endregion
 </script>        
 
 <main>
@@ -153,6 +154,36 @@
         color: hsl(199, 77%, 74%);
         font-size: 1.5em;
     }
+    @media only screen and (max-width: 825px) {
+        .top_panel {
+            flex-direction: column;
+            font-size: 0.8em;
+
+            padding: 0 0.8em;
+        }   
+    
+        .menu_button {
+            display: block;
+
+        } 
+
+        .side_panel {
+            display: none;
+
+        }
+    }
+
+    @media only screen and (min-width: 826px) {
+            #top_navbar {
+                display: none;
+
+            }
+
+            .side_panel {
+                display: block;
+                
+            }
+        }
 
     
     .top_panel .title {
@@ -236,42 +267,4 @@
 
     }
 
-    @media only screen and (max-width: 768px) {
-        .top_panel {
-            flex-direction: column;
-            font-size: 0.8em;
-
-            padding: 0 0.8em;
-        }   
-    
-        .menu_button {
-            display: block;
-
-        } 
-
-        .side_panel {
-            display: none;
-
-        }
-        
-        @media only screen and (min-width: 769px) {
-            .top_panel {
-                display: none;
-
-            }
-
-            .side_panel {
-                display: block;
-                
-            }
-        }
-
-    }
-
-      
-
-        
-
-    
-    
 </style>

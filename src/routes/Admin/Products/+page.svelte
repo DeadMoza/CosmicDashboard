@@ -2,6 +2,8 @@
     import Icon from '@iconify/svelte';
     import { goto } from "$app/navigation";
 
+    export let data;
+
 </script>
 
 
@@ -19,13 +21,11 @@
         </div>
 
         <div class="list">
+            {#each data.products as product}
+                <span class="product"> <h4>{product.name}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
 
-            <span class="product"> <h4>Iphone 15 pro max</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Rei keychain</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Sticker</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Wall mount</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>Shirt</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="product"> <h4>i put the new forhis on the jeep i travel to the bungo bangies el tangoobee</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            {/each}
+           
 
 
         </div>

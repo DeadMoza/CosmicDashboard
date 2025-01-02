@@ -7,7 +7,8 @@
 <body>
     <div class="header">
 
-        <a href="/Admin/Products" class="back_bttn"> <Icon icon="material-symbols:arrow-back" /> </a> <h2>Edit Product</h2>
+        <a href="/Admin/Products" class="back_bttn"> <Icon icon="material-symbols:arrow-back" /> </a>
+        <h2>Edit Product</h2>
 
     </div>
 
@@ -18,13 +19,20 @@
         <div class="form_container">
             <div class="container">
                 <label for="product_name">Product Name: </label>
-                <input type="text" id="product_name">
+                <input type="text" id="product_name" required>
 
             </div>
-            <div class="container">
-                <label for="product_price">Price: </label>
-                <input type="text" id="product_price">
+            <div class="container" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="priceContainer" style="margin-right: 1em;">
+                    <label for="product_price">Price: </label>
+                    <input type="text" id="product_price" placeholder= "LYD" required>
 
+                </div>
+                <div class="quantityContainer" style="margin-left: 1em;">
+                    <label for="product_quantity">Quantity: </label>
+                    <input type="number" id="product_quantity" placeholder="#" required>
+
+                </div>
             </div>  
         </div>
 
@@ -34,14 +42,20 @@
         <div class="form_container">
             <div class="container">
                 <label for="product_category">Category: </label>
-                <input type="text" id="product_category">
+                <input type="text" id="product_category" required>
                 
             </div>
 
             <div class="container">
-                <label for="product_quantity">Quantity: </label>
-                <input type="text" id="product_quantity">
-
+                <label for="colors">Colors: </label>
+                <div class="colorsContainer" style="display: flex; flex-direction: row;">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    
+                </div>
             </div>               
         </div>
 
@@ -50,10 +64,22 @@
 
         <div class="product_describtion_container">
             <label for="product_describtion">Describtion: </label>
-            <input type="text" id="product_describtion">
+            <br>
+            <textarea name="product_describtion" id="product_describtion" cols = "120" rows="4" required></textarea>
 
         </div>
 
+
+
+
+
+        <div class="add_photos">
+            <span> <Icon icon="material-symbols:upload" /> </span>
+            <p>Drag And Drop</p>
+
+        </div>
+
+        <button type="submit">Confirm</button>
 
     </form>
 
@@ -82,9 +108,9 @@
     .header {
         display: flex;
         flex-direction: row;
-        
-        margin-bottom: 1em;
-        
+
+        margin-bottom: 1em;        
+
     }
 
     .header .back_bttn {
@@ -149,6 +175,27 @@
         text-align: left;
     }
 
+    .add_photos {
+        display: flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items: center;
+
+        margin: 2em;
+        background-color: hsl(0, 0%, 65%);
+
+        border-radius: 5px;
+        min-height: 10em;
+
+        color: black;
+
+    }
+
+    .add_photos span {
+        color: black;
+        font-size: 2em;
+    }
+
     @media only screen and (max-width: 768px) {
         body {
             padding: 0;
@@ -186,8 +233,28 @@
 
         }
 
+        .add_photos {
+            margin: 0.8em 0.8em;
+
+        }
     }
 
+    .product_form .form_container .container .colorsContainer > input {
+        margin-right: 1em;
+        padding: 0;
 
+    }
+
+    textarea {
+        padding: 0.3em;
+        resize: none;
+
+    }
+
+    textarea:focus {
+        border: solid 1px hsl(199, 77%, 74%);
+        outline: solid 2px hsl(199, 77%, 74%);
+
+    }
 
 </style>

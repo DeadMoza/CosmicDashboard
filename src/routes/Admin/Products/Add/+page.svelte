@@ -1,6 +1,12 @@
 <script>
     import Icon from '@iconify/svelte';
 
+    let productName = "";
+    let productPrice = ""
+
+    function shlal() {
+        console.log(productName, productPrice);
+    }
 </script>
 
 <main>
@@ -19,13 +25,20 @@
         <div class="form_container">
             <div class="container">
                 <label for="product_name">Product Name: </label>
-                <input type="text" id="product_name">
+                <input type="text" id="product_name" bind:value={productName}>
 
             </div>
-            <div class="container">
-                <label for="product_price">Price: </label>
-                <input type="text" id="product_price">
+            <div class="container" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="priceContainer" style="margin-right: 1em;">
+                    <label for="product_price">Price: </label>
+                    <input type="text" id="product_price" placeholder= "LYD" bind:value={productPrice}>
 
+                </div>
+                <div class="quantityContainer" style="margin-left: 1em;">
+                    <label for="product_quantity">Quantity: </label>
+                    <input type="number" id="product_quantity" placeholder="#">
+
+                </div>
             </div>  
         </div>
 
@@ -35,14 +48,20 @@
         <div class="form_container">
             <div class="container">
                 <label for="product_category">Category: </label>
-                <input type="text" id="product_category">
+                <input type="text" id="product_category" >
                 
             </div>
 
             <div class="container">
-                <label for="product_quantity">Quantity: </label>
-                <input type="text" id="product_quantity">
-
+                <label for="colors">Colors: </label>
+                <div class="colorsContainer" style="display: flex; flex-direction: row;">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    <input type="color" id="colors">
+                    
+                </div>
             </div>               
         </div>
 
@@ -51,7 +70,8 @@
 
         <div class="product_describtion_container">
             <label for="product_describtion">Describtion: </label>
-            <input type="text" id="product_describtion">
+            <br>
+            <textarea name="product_describtion" id="product_describtion" cols = "120" rows="4"></textarea>
 
         </div>
 
@@ -64,6 +84,8 @@
             <p>Drag And Drop</p>
 
         </div>
+
+        <button type="submit" id="confirmButton" on:click={shlal}>Add</button>
 
     </form>
 
@@ -223,5 +245,40 @@
         }
     }
 
+    textarea {
+        padding: 0.3em;
+        resize: none;
+
+    }
+
+    textarea:focus {
+        border: solid 1px hsl(199, 77%, 74%);
+        outline: solid 2px hsl(199, 77%, 74%);
+
+    }
+
+    .product_form .form_container .container .colorsContainer > input {
+        margin-right: 1em;
+        padding: 0;
+    }
+
+    form > button {
+        width: 10em;
+        height: 2em;
+
+        margin-right: 2.5em;
+         
+        align-self: flex-end;
+
+        background-color: hsl(199, 77%, 74%);
+        border: solid 1px hsl(199, 77%, 74%);
+        border-radius: 2px;
+
+    }
+
+    form > button:active {
+        border: solid 2px hsl(199, 77%, 74%);
+    
+    }
 
 </style>

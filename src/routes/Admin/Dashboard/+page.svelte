@@ -76,7 +76,7 @@
         <div id="revenue_today" class="container">
 
             <h3>TODAY</h3>
-            <h1>200 LYD</h1>
+            <h1>200</h1>
             <p>200 lyd made today</p>
 
         </div>
@@ -84,7 +84,7 @@
         <div id="revenue_month" class="container">
 
             <h3>THIS MONTH</h3>
-            <h1>3427 LYD</h1>
+            <h1>3427</h1>
             <p>3427 lyd made this month</p>
 
         </div>
@@ -92,7 +92,7 @@
         <div id="revenue_all" class="container">
 
             <h3>ALL TIME</h3>
-            <h1>23000 LYD</h1>
+            <h1>23000</h1>
             <p>23000 lyd made in total</p>
 
         </div>
@@ -134,7 +134,7 @@
 
         max-width: 100%;
         width: 100%;
-        min-height: 8.5em;
+        min-height: 7em;
 
         margin: 1em 1.5em 0 1.5em;
 
