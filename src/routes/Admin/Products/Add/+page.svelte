@@ -1,11 +1,31 @@
 <script>
     import Icon from '@iconify/svelte';
 
+    // Product attributes to be sent as arguments to the api request and then sent to db
     let productName = "";
-    let productPrice = ""
+    let productPrice = "";
+    let productQuantity = "";
+    let productDescription = "";
 
-    function shlal() {
-        console.log(productName, productPrice);
+    async function setNewProducts() {
+        // Debugging stuffies
+        console.log("Submitted");
+        try {
+            // The api route that sends the value as json to db (This calls the POST request)
+            const result = fetch('/Admin/Products/Add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                // Function arguments basically
+                body: JSON.stringify({productName, productPrice, productQuantity, productDescription}),
+
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 </script>
 
@@ -31,12 +51,12 @@
             <div class="container" style="display: flex; flex-direction: row; justify-content: space-between;">
                 <div class="priceContainer" style="margin-right: 1em;">
                     <label for="product_price">Price: </label>
-                    <input type="text" id="product_price" placeholder= "LYD" bind:value={productPrice}>
+                    <input type="number" id="product_price" placeholder= "LYD" bind:value={productPrice}>
 
                 </div>
                 <div class="quantityContainer" style="margin-left: 1em;">
                     <label for="product_quantity">Quantity: </label>
-                    <input type="number" id="product_quantity" placeholder="#">
+                    <input type="number" id="product_quantity" placeholder="#" bind:value={productQuantity}>
 
                 </div>
             </div>  
@@ -68,10 +88,10 @@
 
 
 
-        <div class="product_describtion_container">
-            <label for="product_describtion">Describtion: </label>
+        <div class="product_description_container">
+            <label for="product_description">Description: </label>
             <br>
-            <textarea name="product_describtion" id="product_describtion" cols = "120" rows="4"></textarea>
+            <textarea name="product_description" id="product_description" cols = "120" rows="4" bind:value={productDescription}></textarea>
 
         </div>
 
@@ -85,7 +105,7 @@
 
         </div>
 
-        <button type="submit" id="confirmButton" on:click={shlal}>Add</button>
+        <button type="button" id="confirmButton" on:click={setNewProducts}>Add</button>
 
     </form>
 
@@ -171,12 +191,12 @@
 
     }
 
-    .product_form .product_describtion_container {
+    .product_form .product_description_container {
         margin: 0 2em;
         
     }
 
-    .product_form .product_describtion_container input {
+    .product_form .product_description_container input {
         height: 5em;
         text-align: left;
     }
@@ -234,7 +254,7 @@
 
         }
 
-        .product_form .product_describtion_container {
+        .product_form .product_description_container {
             margin: 0 0.8em;
 
         }
@@ -274,10 +294,16 @@
         border: solid 1px hsl(199, 77%, 74%);
         border-radius: 2px;
 
+        cursor: pointer;
+    }
+
+    form > button:hover {
+        background-color: hsl(199, 100%, 83%);
+
     }
 
     form > button:active {
-        border: solid 2px hsl(199, 77%, 74%);
+        background-color:hsl(199, 100%, 83%);
     
     }
 
