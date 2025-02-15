@@ -5,6 +5,10 @@
     let productName = "";
     let productPrice = "";
     let productQuantity = "";
+
+    export let data;
+    let productCategory = "";
+    
     let productDescription = "";
 
     async function setNewProducts() {
@@ -19,7 +23,7 @@
 
                 },
                 // Function arguments basically
-                body: JSON.stringify({productName, productPrice, productQuantity, productDescription}),
+                body: JSON.stringify({productName, productPrice, productQuantity, productCategory, productDescription}),
 
             });
 
@@ -68,7 +72,17 @@
         <div class="form_container">
             <div class="container">
                 <label for="product_category">Category: </label>
-                <input type="text" id="product_category" >
+                <div class="categoriesMenu">
+                    <select bind:value={productCategory}>
+
+                        {#each data.Categories as category}
+                            <option value={category}>{category}</option>
+                        {/each}
+
+                    </select>
+
+                </div>
+                
                 
             </div>
 
@@ -171,6 +185,17 @@
     .product_form .form_container .container {
         margin: 0 2em;
         width: 50%;
+    }
+
+
+    .product_form .form_container .categoriesMenu {
+        width: max-content;
+        position: relative;
+
+    }
+
+    .product_form .form_container .categoriesMenu select {
+        padding: 0.2em 1em;
     }
 
     label {

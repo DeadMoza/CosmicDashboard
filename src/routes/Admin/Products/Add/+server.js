@@ -8,7 +8,7 @@ export async function POST({ request }) {
         const body = await request.text(); // Log the raw request body
         console.log('Request Body:', body);
     
-        const { productName, productPrice, productQuantity, productDescription } = JSON.parse(body); // No need for this ex: = request.json()
+        const { productName, productPrice, productQuantity, productCategory, productDescription } = JSON.parse(body); // No need for this ex: = request.json()
 
         // Grab the products collection from db
         const snapshot = collection(db, "products");
@@ -16,6 +16,7 @@ export async function POST({ request }) {
             name: productName,
             price: parseInt(productPrice),
             quantity: parseInt(productQuantity),
+            category: productCategory,
             description: productDescription,
 
         });
