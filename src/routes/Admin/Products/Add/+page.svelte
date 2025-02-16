@@ -8,29 +8,82 @@
 
     export let data;
     let productCategory = "";
-    
+
+    let productColor = "";
     let productDescription = "";
 
+    let selectedImages = [];
+    let previewImages = [];
+
     async function setNewProducts() {
+        if(selectedImages == 0) return alert("No images selected!");
+        if (!productName || !productPrice || !productQuantity) return alert("Name, price or quantity cannot by empty!");
+            
+        let formData = new FormData();
+        formData.append("productName", productName);
+        formData.append("productPrice", productPrice);
+        formData.append("productQuantity", productQuantity);
+        formData.append("productCategory", productCategory);
+        formData.append("productColor", productColor);
+        formData.append("productDescription", productDescription);
+
+        for(let file of selectedImages) {
+            formData.append("images", file);
+
+        }
+
         // Debugging stuffies
         console.log("Submitted");
         try {
             // The api route that sends the value as json to db (This calls the POST request)
-            const result = fetch('/Admin/Products/Add', {
+            const respone = await fetch('/Admin/Products/Add', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-
-                },
+                
                 // Function arguments basically
-                body: JSON.stringify({productName, productPrice, productQuantity, productCategory, productDescription}),
+                body: formData
 
             });
+            
+            if(respone.ok) {
+                alert("Product Uploaded!");
+                selectedImages = []
+                previewImages = []
+            }
 
         } catch (error) {
-            console.log(error);
+            alert("Error: could not upload product!");
+            console.log("Upload Failed!: " + error);
         }
     }
+
+
+    function selectFiles(event) {
+        const files = Array.from(event.target.flies || event.dataTransfer?.files);
+        if(files.length > 0) {
+            selectedImages = [...selectedImages, ...files];
+            previewImages = [...previewImages, ...files.map(file => URL.createObjectURL(file))];
+
+        }
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        selectFiles(event);
+
+    }
+
+    function dragOver(event) {
+        event.preventDefault();
+
+    }
+
+    function openFilePicker() {
+        document.getElementById('fileInput').click();
+
+    }
+
+
+
 </script>
 
 <main>
@@ -42,6 +95,7 @@
 
     </div>
 
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <form class="product_form">
 
 
@@ -88,13 +142,23 @@
 
             <div class="container">
                 <label for="colors">Colors: </label>
-                <div class="colorsContainer" style="display: flex; flex-direction: row;">
-                    <input type="color" id="colors">
-                    <input type="color" id="colors">
-                    <input type="color" id="colors">
-                    <input type="color" id="colors">
-                    <input type="color" id="colors">
-                    
+                <div class="colorsMenu">
+                    <select name="colorsMenu" bind:value={productColor}>
+                        <option value="Black">Black</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Red">Red</option>
+                        <option value="White">White</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Green">Green</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Pruple">Purple</option>
+                        <option value="Dark Red">Dark Red</option>
+                        <option value="Dark Blue">Dark Blue</option>
+                        <option value="Dark Green">Dark Green</option>
+                        
+
+                    </select>
                 </div>
             </div>               
         </div>
@@ -113,10 +177,21 @@
 
 
 
-        <div class="add_photos">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="add_photos" on:click={openFilePicker} on:drop={drop} on:dragover={dragOver}>
             <span> <Icon icon="material-symbols:upload" /> </span>
             <p>Drag And Drop</p>
+            <input id="fileInput" type="file" accept="image/*" multiple on:change={selectFiles} style="display: none">
 
+        </div>
+
+        <div class="previewImages">
+            {#each previewImages as image}
+                 <div class="previewImage">
+                    <!-- svelte-ignore a11y-img-redundant-alt -->
+                    <img src={image} alt="Preview Image">
+                 </div>
+            {/each}
         </div>
 
         <button type="button" id="confirmButton" on:click={setNewProducts}>Add</button>
@@ -195,7 +270,7 @@
     }
 
     .product_form .form_container .categoriesMenu select {
-        padding: 0.2em 1em;
+        padding: 0.4em 0.5em;
     }
 
     label {
@@ -239,12 +314,38 @@
         min-height: 10em;
 
         color: black;
+        cursor: pointer;
 
     }
 
     .add_photos span {
         color: black;
         font-size: 2em;
+    }
+
+    .previewImages {
+        margin-left: 2em;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-top: 1em;
+
+    }
+
+    .previewImage {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 5px;
+
+    }
+
+    .previewImage img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
 
     @media only screen and (max-width: 768px) {
@@ -302,10 +403,16 @@
 
     }
 
-    .product_form .form_container .container .colorsContainer > input {
-        margin-right: 1em;
-        padding: 0;
+    .product_form .form_container .colorsMenu {
+        width: fit-content;
+        position: relative;
+
     }
+
+    .product_form .form_container .colorsMenu select {
+        padding: 0.4em 0.5em;
+    }
+
 
     form > button {
         width: 10em;

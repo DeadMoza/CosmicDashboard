@@ -1,6 +1,6 @@
 <script>
     import Icon from '@iconify/svelte';
-
+    export let data;
 
 </script>
 
@@ -20,10 +20,10 @@
         </div>
 
         <div class="list">
+            {#each data.Categories as category}
+                <span class="category"> <h4>{category}</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
 
-            <span class="category"> <h4>Phones</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="category"> <h4>Keychains</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
-            <span class="category"> <h4>Clothing</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            {/each}
 
         </div>
 

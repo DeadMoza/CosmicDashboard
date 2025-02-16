@@ -1,23 +1,47 @@
 import { json } from '@sveltejs/kit';
-import { db } from '$lib/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { db, storage } from '$lib/firebase';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 // Upload data to database
 export async function POST({ request }) {
     try {// Debugging stuff
-        const body = await request.text(); // Log the raw request body
-        console.log('Request Body:', body);
     
-        const { productName, productPrice, productQuantity, productCategory, productDescription } = JSON.parse(body); // No need for this ex: = request.json()
+        const formData = await request.formData();
+
+        const productName = formData.get('productName');
+        const productPrice = formData.get('productPrice');
+        const productQuantity = formData.get('productQuantity');
+        const productCategory = formData.get('productCategory');
+        const productColor = formData.get('productColor');
+        const productDescription = formData.get('productDescription');
+        const files = formData.getAll('images');
+
+        const productID = productName + " " + productColor;
+        
+        let imageUrls = [];
+
+        for(let file of files) {
+            const buffer = await file.arrayBuffer();
+            const storageRef = ref(storage, `products/${productID}/${file.name}`);
+            const storageSnapshot = await uploadBytes(storageRef, buffer);
+            const downloadUrl = await getDownloadURL(storageSnapshot.ref);
+            imageUrls.push(downloadUrl);
+            
+
+        }
+        
 
         // Grab the products collection from db
-        const snapshot = collection(db, "products");
-        await addDoc(snapshot, {
+        const snapshot = doc(collection(db, "products"), productID);
+        await setDoc(snapshot, {
             name: productName,
             price: parseInt(productPrice),
             quantity: parseInt(productQuantity),
             category: productCategory,
+            color: productColor,
             description: productDescription,
+            images: imageUrls,
 
         });
 
