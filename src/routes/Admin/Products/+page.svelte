@@ -22,7 +22,7 @@
 
         <div class="list">
             {#each data.products as product}
-                <span class="product"> <h4>{product.name}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+                <span class="product"> <h4>{product.id}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
 
             {/each}
            
@@ -89,8 +89,11 @@
         justify-content: space-between;
         align-items: center;
 
-        padding: 0 1em 0.5em 0;
+        padding: 0.5em 0.3em;
         font-size: 1.1em;
+
+        border-top: solid 1px rgb(224, 224, 224);
+
     }
 
     .menu .list .product h4{

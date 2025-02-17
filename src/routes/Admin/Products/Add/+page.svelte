@@ -15,9 +15,13 @@
     let selectedImages = [];
     let previewImages = [];
 
+    let isLoading = false;
+
     async function setNewProducts() {
         if(selectedImages == 0) return alert("No images selected!");
         if (!productName || !productPrice || !productQuantity) return alert("Name, price or quantity cannot by empty!");
+
+        isLoading = true;
             
         let formData = new FormData();
         formData.append("productName", productName);
@@ -36,7 +40,7 @@
         console.log("Submitted");
         try {
             // The api route that sends the value as json to db (This calls the POST request)
-            const respone = await fetch('/Admin/Products/Add', {
+            const respone = await fetch('/api/add', {
                 method: 'POST',
                 
                 // Function arguments basically
@@ -48,17 +52,28 @@
                 alert("Product Uploaded!");
                 selectedImages = []
                 previewImages = []
+
+                productName = "";
+                productPrice = "";
+                productCategory = "";
+                productColor = "";
+                productDescription = "";
+                productQuantity = "";
+
+                isLoading = false;
             }
 
         } catch (error) {
             alert("Error: could not upload product!");
             console.log("Upload Failed!: " + error);
         }
+
+
     }
 
 
     function selectFiles(event) {
-        const files = Array.from(event.target.flies || event.dataTransfer?.files);
+        const files = Array.from(event.target.files || event.dataTransfer?.files);
         if(files.length > 0) {
             selectedImages = [...selectedImages, ...files];
             previewImages = [...previewImages, ...files.map(file => URL.createObjectURL(file))];
@@ -79,6 +94,16 @@
 
     function openFilePicker() {
         document.getElementById('fileInput').click();
+
+    }
+
+    function removeImage(index) {
+        selectedImages.splice(index, 1);
+        previewImages.splice(index, 1);
+
+        selectedImages = [...selectedImages];
+        previewImages = [...previewImages];
+        
 
     }
 
@@ -186,15 +211,23 @@
         </div>
 
         <div class="previewImages">
-            {#each previewImages as image}
+            {#each previewImages as image, i}
                  <div class="previewImage">
                     <!-- svelte-ignore a11y-img-redundant-alt -->
                     <img src={image} alt="Preview Image">
+                    <button class="removeImageButton" on:click={() => {removeImage(i)}}>x</button>
                  </div>
             {/each}
         </div>
 
-        <button type="button" id="confirmButton" on:click={setNewProducts}>Add</button>
+        <button type="button" id="confirmButton" on:click={setNewProducts}>
+            {#if isLoading}
+                Uploading...
+            {:else}
+                Add
+            {/if}
+        
+        </button>
 
     </form>
 
@@ -340,12 +373,29 @@
         overflow: hidden;
         border-radius: 5px;
 
+
     }
 
     .previewImage img {
         height: 100%;
         width: 100%;
         object-fit: cover;
+
+    }
+
+    .removeImageButton {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+
+        border-radius: 10px;
+        width: 20px;
+        height: 20px;
+        
     }
 
     @media only screen and (max-width: 768px) {

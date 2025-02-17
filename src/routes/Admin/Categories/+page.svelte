@@ -21,7 +21,7 @@
 
         <div class="list">
             {#each data.Categories as category}
-                <span class="category"> <h4>{category}</h4> <span> <button class="edit_bttn"> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+                <span class="category"> <h4>{category}</h4> <span> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button> </span></span>
 
             {/each}
 
@@ -100,18 +100,6 @@
         font-size: 1.1em;
     }
 
-
-    .menu .list .category .edit_bttn {
-        border: none;
-        border-radius: 5px;
-        padding: 0.1em 1.2em 0.1em 1.2em;
-        
-        font-size: 1.1em;
-        vertical-align: middle;
-        line-height: 1em;
-        
-    }
-
     .menu .list .category .delete_bttn {
         border: none;
         border-radius: 5px;
@@ -139,11 +127,6 @@
         .menu .list .category h4 {
             font-size: 1rem;
             
-        }
-
-        .menu .list .category .edit_bttn {
-            padding: 0.1em 0.3em;
-
         }
 
         .menu .list .category .delete_bttn {
