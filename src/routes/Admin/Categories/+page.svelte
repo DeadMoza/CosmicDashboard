@@ -1,6 +1,57 @@
 <script>
     import Icon from '@iconify/svelte';
+    
+    let newCategory = "";
+    let isLoading = false;
+
     export let data;
+    let categories = data.Categories;
+
+    
+    async function addCategory() {
+        try {
+            if(!newCategory.trim()) return alert("Enter category name!");
+
+            isLoading = true;
+            const response = await fetch("/api/addCategory", {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify({ newCategory })
+
+            });
+
+            if (response.ok) {
+                categories = [...categories, newCategory];
+                newCategory = "";
+                
+                isLoading = false;
+                alert("Category Added!");
+
+            } else alert("Could not add category!");
+            
+            isLoading = false;
+
+        } catch (error) {
+            console.log("Error while adding category: ", error);
+            alert("Failed to add category!");
+        }
+    }
+
+    async function removeCategory(categoryName) {
+        const result = await fetch("/api/removeCategory", {
+            method: "DELETE",
+            headers: { 'Content-Type' : 'application/json' },
+            body: JSON.stringify({ category: categoryName }),
+
+        });
+
+
+        if (result.ok) {
+            alert("Category Deleted!");
+            categories = categories.filter(cat => cat != categoryName);
+                    
+        }  else alert("Failed to remove category!");
+    }
 
 </script>
 
@@ -8,8 +59,14 @@
 <main>
 <body>
     
-    <input type="text" placeholder="Category name" class="category_input">
-    <button class="add_new_category_bttn">Add new category</button>
+    <input type="text" placeholder="Category name" class="category_input" bind:value={newCategory}>
+    <button class="add_new_category_bttn" on:click={addCategory}>
+        {#if isLoading}
+            Adding...
+        {:else}
+            Add New Category
+        {/if}
+    </button>
 
     <div class="menu">
 
@@ -20,8 +77,8 @@
         </div>
 
         <div class="list">
-            {#each data.Categories as category}
-                <span class="category"> <h4>{category}</h4> <span> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button> </span></span>
+            {#each categories as category}
+                <span class="category"> <h4>{category}</h4> <span> <button class="delete_bttn" on:click={() => {removeCategory(category)}}> <Icon icon="mdi:trash" /> </button> </span></span>
 
             {/each}
 
@@ -29,7 +86,6 @@
 
 
     </div>
-
 
 </body>
 </main>

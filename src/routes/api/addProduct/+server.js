@@ -18,13 +18,15 @@ export async function POST({ request }) {
         const files = formData.getAll('images');
 
         const productID = productName + " " + productColor;
-        
+
         let imageUrls = [];
 
         for(let file of files) {
-            const buffer = await file.arrayBuffer();
             const storageRef = ref(storage, `products/${productID}/${file.name}`);
-            const storageSnapshot = await uploadBytes(storageRef, buffer);
+            const metadata = {
+                contentType: file.type || 'image/jpg'
+            }
+            const storageSnapshot = await uploadBytes(storageRef, file, metadata);
             const downloadUrl = await getDownloadURL(storageSnapshot.ref);
             imageUrls.push(downloadUrl);
             
