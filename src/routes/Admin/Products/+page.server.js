@@ -11,6 +11,7 @@ export async function load() {
    return {
         products: snapshot.docs.map((doc) => ({
             id: doc.id,
+            price: doc.data().price
             
         }))
    };

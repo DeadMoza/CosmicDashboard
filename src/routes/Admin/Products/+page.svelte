@@ -3,7 +3,30 @@
     import { goto } from "$app/navigation";
 
     export let data;
+    let allProducts = data.products;
 
+    async function deleteProduct(productID) {
+        try {
+            const respone = await fetch('/api/removeProduct', {
+                method: 'DELETE',
+                headers: { 'Content-Type' : 'application/json'},
+                body: JSON.stringify({ productID })
+
+            })
+
+            if(respone.ok) {
+                alert("Product Deleted!");
+                console.log(allProducts);
+                allProducts = allProducts.filter(prod => prod.id != productID);
+                console.log(allProducts);
+            } else alert("Could not delete product!");
+            
+
+        } catch (error) {
+            console.log("Error deleting product: ", error)
+            alert("Error deleting product!");
+        }
+    }
 </script>
 
 
@@ -21,8 +44,8 @@
         </div>
 
         <div class="list">
-            {#each data.products as product}
-                <span class="product"> <h4>{product.id}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn"> <Icon icon="mdi:trash" /> </button></span></span>
+            {#each allProducts as product}
+                <span class="product"> <h4 class="productName">{product.id}</h4> <h4>{product.price}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn" on:click={() => {deleteProduct(product.id)}}> <Icon icon="mdi:trash" /> </button></span></span>
 
             {/each}
            
@@ -32,8 +55,6 @@
 
 
     </div>
-
-
 </body>
 </main>
 
@@ -96,9 +117,11 @@
 
     }
 
-    .menu .list .product h4{
-        max-width: 280px;
-        max-height: 21px;
+    .menu .list .product .productName {
+        min-width: 20em;
+        max-width: 35em;
+
+        width: 100%;
 
         overflow: hidden;
         text-overflow: ellipsis;
