@@ -2,11 +2,12 @@
     import Icon from '@iconify/svelte';
 
     // Product attributes to be sent as arguments to the api request and then sent to db
+    export let data;
+    
     let productName = "";
     let productPrice = "";
     let productQuantity = "";
 
-    export let data;
     let productCategory = "";
 
     let productColor = "";

@@ -45,7 +45,7 @@
 
         <div class="list">
             {#each allProducts as product}
-                <span class="product"> <h4 class="productName">{product.id}</h4> <h4>{product.price}</h4> <span> <button class="edit_bttn" on:click={() => goto("/Admin/Products/Edit")}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn" on:click={() => {deleteProduct(product.id)}}> <Icon icon="mdi:trash" /> </button></span></span>
+                <span class="product"> <h4 class="productName">{product.id}</h4> <h4>{product.price}</h4> <span> <button class="edit_bttn" on:click={() => goto(`/Admin/Products/${product.id}`)}> <Icon icon="mingcute:edit-4-fill" /> </button> <button class="delete_bttn" on:click={() => {deleteProduct(product.id)}}> <Icon icon="mdi:trash" /> </button></span></span>
 
             {/each}
            
