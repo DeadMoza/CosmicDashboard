@@ -1,30 +1,32 @@
 <script>
     import Icon from '@iconify/svelte';
-    
-    export let data;
-    console.log(data);
 
+    export let data;
+    
     const product = data.product;
     
     let productName = product.name;
     let productPrice = product.price;
     let productQuantity = product.quantity;
-
+    
     let productCategory = product.category;
-
+    
     let productColor = product.color;
     let productDescription = product.description;
 
-    let selectedImages;
+    let selectedFiles = [];
     let previewImages = [...product.images];
-
+    
     let isLoading = false;
-
+    
+    
     async function setNewProducts() {
-        if(selectedImages == 0) return alert("No images selected!");
+        if(!previewImages) return alert("No images selected!");
         if (!productName || !productPrice || !productQuantity) return alert("Name, price or quantity cannot by empty!");
 
         isLoading = true;
+
+        
             
         let formData = new FormData();
         formData.append("productName", productName);
@@ -34,41 +36,31 @@
         formData.append("productColor", productColor);
         formData.append("productDescription", productDescription);
 
-        for(let file of selectedImages) {
-            formData.append("images", file);
+        for(let file of selectedFiles) {
+            formData.append('images', file);
+        }    
 
-        }
+        formData.append("oldProductID", data.id);
 
         // Debugging stuffies
-        console.log("Submitted");
+        console.log("Updating product.");
         try {
             // The api route that sends the value as json to db (This calls the POST request)
-            const respone = await fetch('/api/addProduct', {
+            const respone = await fetch('/api/updateProduct', {
                 method: 'POST',
-                
-                // Function arguments basically
                 body: formData
 
             });
             
             if(respone.ok) {
-                alert("Product Uploaded!");
-                selectedImages = []
-                previewImages = []
-
-                productName = "";
-                productPrice = "";
-                productCategory = "";
-                productColor = "";
-                productDescription = "";
-                productQuantity = "";
-
+                alert("Product Updated!");
                 isLoading = false;
+
             }
 
         } catch (error) {
-            alert("Error: could not upload product!");
-            console.log("Upload Failed!: " + error);
+            alert("Error: could not update product!", error);
+            console.log("Update Failed!: " + error);
         }
 
 
@@ -78,10 +70,13 @@
     function selectFiles(event) {
         const files = Array.from(event.target.files || event.dataTransfer?.files);
         if(files.length > 0) {
-            selectedImages = [...selectedImages, ...files];
+            selectedFiles = [...selectedFiles, ...files]
             previewImages = [...previewImages, ...files.map(file => URL.createObjectURL(file))];
 
         }
+
+        console.log("Actual files: ", selectedFiles);
+        console.log("Preview links: ", previewImages);
     }
 
     function drop(event) {
@@ -101,12 +96,11 @@
     }
 
     function removeImage(index) {
-        selectedImages.splice(index, 1);
         previewImages.splice(index, 1);
+        selectedFiles.splice(index, 1);
 
-        selectedImages = [...selectedImages];
         previewImages = [...previewImages];
-        
+        console.log(previewImages);
 
     }
 
@@ -215,7 +209,6 @@
             <div class="previewImages">
                 {#each previewImages as image, i}
                      <div class="previewImage">
-                         svelte-ignore a11y-img-redundant-alt 
                         <!-- svelte-ignore a11y-img-redundant-alt -->
                         <img src={image} alt="Preview Image">
                         <button class="removeImageButton" on:click={() => {removeImage(i)}}>x</button>

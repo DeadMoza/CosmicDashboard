@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { db, storage } from '$lib/firebase';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 // Upload data to database
@@ -35,8 +35,8 @@ export async function POST({ request }) {
         
 
         // Grab the products collection from db
-        const snapshot = doc(collection(db, "products"), productID);
-        await setDoc(snapshot, {
+        const docRef = doc(db, "products", productID);
+        await setDoc(docRef, {
             name: productName,
             price: parseInt(productPrice),
             quantity: parseInt(productQuantity),

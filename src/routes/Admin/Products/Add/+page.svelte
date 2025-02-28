@@ -1,7 +1,6 @@
 <script>
     import Icon from '@iconify/svelte';
 
-    // Product attributes to be sent as arguments to the api request and then sent to db
     export let data;
     
     let productName = "";
@@ -80,6 +79,9 @@
             previewImages = [...previewImages, ...files.map(file => URL.createObjectURL(file))];
 
         }
+
+        console.log(selectedImages);
+        console.log(previewImages);
     }
 
     function drop(event) {
