@@ -1,5 +1,9 @@
 <script>
     import Icon from '@iconify/svelte';
+    import { goto } from "$app/navigation";
+    export let data;
+
+    const orders = data.orders;
 
 
 </script>
@@ -20,16 +24,20 @@
         </div>
 
         <div class="orders_list">
+            {#each orders as order}
+                <div class="order"> <h4 class="order_email">{order.email}</h4> 
+                <p class="order_date">{order.date}</p> 
+                <div class="products">
+                    {#each order.products as product}
+                    <h5 class ="product">{product.id}</h5>         
+                    {/each}
 
-            <div class="order"> <h4 class="order_email">elshamia12@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Iphone 16 pro max</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">pooperface298@gmail.comzzzzzzzzzzzzzzzz</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Stickers</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">zengitwerk@outlook.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Hamburger</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">hello.firesip@com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">flipflops</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">brainfart342312@outlook.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Maglouuubaaaaa</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">smoocher9000@hotmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Rei keychain</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">clouraxe@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">playstation 7</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-            <div class="order"> <h4 class="order_email">poop@gmail.com</h4> <p class="order_date">31/08/2024</p> <h5 class="product">Xbox 720 pro ultra max series xfx</h5> <button class="more_details"><Icon icon="bxs:detail" /></button></div>
-
+                </div>
+                <h5 class="productPrice">{order.totalPrice}</h5> 
+                <button on:click={() => goto(`/Admin/Log/${order.id}`)} class="more_details"><Icon icon="bxs:detail" /></button></div>
+                
+            {/each}
+           
         </div>
 
 
@@ -102,10 +110,23 @@
         text-overflow: ellipsis;
     } 
 
-    .menu .orders_list .order .product {
+    .menu .orders_list .order .products {
 
-        max-width: 50em;
+        max-width: 20em;
         width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .order_date {
+        max-width: 15em;
+    }
+
+    .productPrice {
+        max-width: 5em;
+        width: 100%;
+
+        text-align: end;
     }
 
     .menu .orders_list .order .more_details{

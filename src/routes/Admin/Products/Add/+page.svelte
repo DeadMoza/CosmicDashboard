@@ -42,8 +42,6 @@
             // The api route that sends the value as json to db (This calls the POST request)
             const respone = await fetch('/api/addProduct', {
                 method: 'POST',
-                
-                // Function arguments basically
                 body: formData
 
             });
